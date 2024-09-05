@@ -4,6 +4,7 @@ import { NewTaskComponent, canLeaveEditPage } from '../tasks/new-task/new-task.c
 import { Task } from '../tasks/task/task.model';
 import { inject } from '@angular/core';
 import { TasksService } from '../tasks/tasks.service';
+import { TaskComponent } from '../tasks/task/task.component';
 
 export const resolveUserTasks: ResolveFn<Task[]> = (
   activatedRouteSnapshot,
@@ -34,7 +35,8 @@ export const routes: Routes = [
   },
   {
     path: 'tasks', // <your-domain>/users/<uid>/tasks
-    loadComponent: () => import('../tasks/tasks.component').then(mod => mod.TasksComponent),
+    component: TaskComponent,
+    // loadComponent: () => import('../tasks/tasks.component').then(mod => mod.TasksComponent),
     runGuardsAndResolvers: 'always',
     resolve: {
       userTasks: resolveUserTasks,
